@@ -1,4 +1,4 @@
-package com.estagio.curso;
+package com.estagio.curso.entities;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
