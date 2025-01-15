@@ -1,14 +1,20 @@
 package com.estagio.curso.entities;
 
+import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity
+@Table(name = "td_user")
 @SpringBootApplication
 public class user implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String email;
