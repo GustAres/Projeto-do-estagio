@@ -1,9 +1,12 @@
 package com.estagio.curso.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -19,6 +22,10 @@ public class user implements Serializable {
     private String email;
     private String phone;
     private String password;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "client")
+    private List<Order> orders = new ArrayList<>();
 
     public user() {
 
@@ -76,6 +83,10 @@ public class user implements Serializable {
         this.password = password;
     }
 
+    public List<Order> getOrders() {
+        return orders;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -100,5 +111,6 @@ public class user implements Serializable {
             return false;
         return true;
     }
+
 
 }
