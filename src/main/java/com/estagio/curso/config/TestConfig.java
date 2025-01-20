@@ -1,11 +1,12 @@
 package com.estagio.curso.config;
 
+import com.estagio.curso.entities.Category;
 import com.estagio.curso.entities.Order;
 import com.estagio.curso.entities.enums.OrderStatus;
 import com.estagio.curso.entities.user;
+import com.estagio.curso.repositories.CategoryRepository;
 import com.estagio.curso.repositories.OrderRepository;
 import com.estagio.curso.repositories.UserRepository;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -24,9 +25,19 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CategoryRepository categoryrRepository;
+
 
     @Override
     public void run(String... args) throws Exception {
+
+        Category cat1 = new Category(null, "Electronics");
+        Category cat2 = new Category(null, "Books");
+        Category cat3 = new Category(null, "Computers");
+
+        categoryrRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+
         user u1 = new user(null, "Maria Brown", "maria@gmail.com", "988888888", "123456");
         user u2 = new user(null, "Alex Green", "alex@gmail.com", "977777777", "123456");
 
