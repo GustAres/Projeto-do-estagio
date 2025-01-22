@@ -2,6 +2,7 @@ package com.estagio.curso.services;
 
 import com.estagio.curso.entities.user;
 import com.estagio.curso.repositories.UserRepository;
+import com.estagio.curso.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class UserService {
 
     public user findById(Long id) {
         Optional<user> obj = repository.findById(id);
-        return obj.get();
+        return obj.orElseThrow(()-> new ResourceNotFoundException(id));
     }
 
     public user insert(user obj) {
@@ -43,4 +44,6 @@ public class UserService {
         entity.setEmail(obj.getEmail());
         entity.setPhone(obj.getPhone());
     }
+
+
 }
